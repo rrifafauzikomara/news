@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news/features/news/data/remote/network/news_api.dart';
-import 'package:news/features/news/data/repositories/news_repository_impl.dart';
-import 'package:news/features/news/domain/usecases/news_usecase.dart';
+import 'package:news/features/news/di/injection_container.dart';
 import 'package:news/features/news/presentation/bloc/bloc.dart';
 import 'package:news/shared/widget/card_article.dart';
 import 'package:news/shared/widget/news_header.dart';
@@ -53,13 +51,7 @@ class ListNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsBloc(
-        newsUseCase: NewsUseCaseImpl(
-          newsRepository: NewsRepositoryImpl(
-            dataSource: NewsApi(),
-          ),
-        ),
-      )..add(LoadData()),
+      create: (context) => inject<NewsBloc>()..add(LoadData()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(title),
