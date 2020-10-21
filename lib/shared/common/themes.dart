@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/common/color_palettes.dart';
+import 'package:news/shared/common/color_palettes.dart';
 
 class Themes {
   // Styling for text

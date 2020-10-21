@@ -1,16 +1,17 @@
-class ArticlesResult {
-  ArticlesResult({this.articles});
+class ArticlesResultModel {
+  ArticlesResultModel({this.articles});
 
-  List<Article> articles;
+  List<ArticleModel> articles;
 
-  factory ArticlesResult.fromJson(Map<String, dynamic> json) => ArticlesResult(
-        articles: List<Article>.from(
-            json["articles"].map((x) => Article.fromJson(x))),
+  factory ArticlesResultModel.fromJson(Map<String, dynamic> json) =>
+      ArticlesResultModel(
+        articles: List<ArticleModel>.from(
+            json["articles"].map((x) => ArticleModel.fromJson(x))),
       );
 }
 
-class Article {
-  Article({
+class ArticleModel {
+  ArticleModel({
     this.author,
     this.title,
     this.description,
@@ -28,7 +29,7 @@ class Article {
   String publishedAt;
   String content;
 
-  factory Article.fromJson(Map<String, dynamic> json) => Article(
+  factory ArticleModel.fromJson(Map<String, dynamic> json) => ArticleModel(
         author: json["author"],
         title: json["title"],
         description: json["description"],

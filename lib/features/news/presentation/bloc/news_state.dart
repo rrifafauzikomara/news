@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:news/data/model/article.dart';
+import 'package:news/features/news/domain/entities/article_entity.dart';
 
 abstract class NewsState extends Equatable {
   const NewsState();
@@ -26,7 +26,7 @@ class NoData extends NewsState {
 }
 
 class HasData extends NewsState {
-  final ArticlesResult data;
+  final List<ArticleEntity> data;
 
   HasData({@required this.data});
 

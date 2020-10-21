@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:news/data/model/article.dart';
-import 'package:news/ui/detail_news_page.dart';
+import 'package:news/features/detail/presentation/ui/detail_news_page.dart';
+import 'package:news/features/news/domain/entities/article_entity.dart';
 
 class CardArticle extends StatelessWidget {
-  final Article article;
+  final ArticleEntity article;
 
   const CardArticle({Key key, @required this.article}) : super(key: key);
 

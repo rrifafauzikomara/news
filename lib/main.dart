@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:news/common/themes.dart';
-import 'package:news/data/bloc/news_bloc_observer.dart';
-import 'package:news/ui/detail_news_page.dart';
-import 'package:news/ui/home_page.dart';
+import 'package:news/core/bloc/news_bloc_observer.dart';
+import 'package:news/features/detail/presentation/ui/detail_news_page.dart';
+import 'package:news/features/home/presentation/ui/home_page.dart';
+import 'package:news/shared/common/themes.dart';
 
 void main() {
   Bloc.observer = NewsBlocObserver();
@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This shared.widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

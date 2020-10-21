@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news/ui/favorite_news_page.dart';
-import 'package:news/ui/list_news_page.dart';
+import 'package:news/features/favorite/presentation/ui/favorite_news_page.dart';
+import 'package:news/features/news/presentation/ui/list_news_page.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';

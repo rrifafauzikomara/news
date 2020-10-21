@@ -2,14 +2,13 @@ import 'dart:io';
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:news/data/api/api_service.dart';
-import 'package:news/data/bloc/news/news_event.dart';
-import 'package:news/data/bloc/news/news_state.dart';
+import 'package:news/features/news/domain/usecases/news_usecase.dart';
+import 'package:news/features/news/presentation/bloc/bloc.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
-  final ApiService apiService;
+  final NewsUseCase newsUseCase;
 
-  NewsBloc({@required this.apiService}) : super(Initial());
+  NewsBloc({@required this.newsUseCase}) : super(Initial());
 
   @override
   Stream<NewsState> mapEventToState(NewsEvent event) async* {
@@ -21,8 +20,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   Stream<NewsState> _loadNews() async* {
     try {
       yield Loading();
-      var article = await apiService.getListArticle();
-      if (article.articles.isEmpty) {
+      var article = await newsUseCase.getListArticle();
+      if (article.isEmpty) {
         yield NoData(message: 'No Data');
       } else {
         yield HasData(data: article);

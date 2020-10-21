@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news/data/api/api_service.dart';
-import 'package:news/data/bloc/news/bloc.dart';
-import 'package:news/widget/card_article.dart';
-import 'package:news/widget/news_header.dart';
+import 'package:news/features/news/data/remote/network/news_api.dart';
+import 'package:news/features/news/data/repositories/news_repository_impl.dart';
+import 'package:news/features/news/domain/usecases/news_usecase.dart';
+import 'package:news/features/news/presentation/bloc/bloc.dart';
+import 'package:news/shared/widget/card_article.dart';
+import 'package:news/shared/widget/news_header.dart';
 
 class ListNewsPage extends StatelessWidget {
   final String title;
@@ -15,8 +17,8 @@ class ListNewsPage extends StatelessWidget {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
         if (state is HasData) {
-          var articleNew = state.data.articles[0];
-          var articleList = state.data.articles;
+          var articleNew = state.data[0];
+          var articleList = state.data;
           articleList.removeAt(0);
           return NestedScrollView(
             headerSliverBuilder: (context, isScrolled) {
@@ -51,7 +53,13 @@ class ListNewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsBloc(apiService: ApiService())..add(LoadData()),
+      create: (context) => NewsBloc(
+        newsUseCase: NewsUseCaseImpl(
+          newsRepository: NewsRepositoryImpl(
+            dataSource: NewsApi(),
+          ),
+        ),
+      )..add(LoadData()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(title),
