@@ -1,5 +1,4 @@
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'presentation/ui/detail_news_page.dart';
 
 class FeatureDetailNews extends ChildModule {
