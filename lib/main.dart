@@ -1,16 +1,52 @@
 import 'package:bloc/bloc.dart';
+import 'package:bookmark/bookmark.dart';
+import 'package:bookmark/presentation/ui/favorite_news_page.dart';
+import 'package:core/core.dart';
+import 'package:detail_news/detail_news.dart';
+import 'package:detail_news/presentation/ui/detail_news_page.dart';
 import 'package:flutter/material.dart';
-import 'package:news/features/news/di/injection_container.dart' as di;
-import 'package:news/core/bloc/news_bloc_observer.dart';
-import 'package:news/features/detail/presentation/ui/detail_news_page.dart';
-import 'package:news/features/home/presentation/ui/home_page.dart';
-import 'package:news/shared/common/themes.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:home/home.dart';
+import 'package:home/presentation/ui/home_page.dart';
+import 'package:list_news/list_news.dart';
+import 'package:list_news/presentation/ui/list_news_page.dart';
+import 'package:news/bloc/news_bloc_observer.dart';
+import 'package:shared/common/themes.dart';
+import 'package:shared/shared.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = NewsBlocObserver();
-  await di.init();
-  runApp(MyApp());
+  Modular.init(CoreModule());
+  Modular.init(SharedModule());
+  runApp(ModularApp(module: AppModule()));
+}
+
+class AppModule extends MainModule {
+  @override
+  List<Bind> get binds => [];
+
+  @override
+  Widget get bootstrap => MyApp();
+
+  @override
+  List<ModularRouter> get routers => [
+        ModularRouter(
+          HomePage.routeName,
+          module: FeatureHomeModule(),
+        ),
+        ModularRouter(
+          ListNewsPage.routeName,
+          module: FeatureListNews(),
+        ),
+        ModularRouter(
+          DetailNewsPage.routeName,
+          module: FeatureDetailNews(),
+        ),
+        ModularRouter(
+          FavoriteNewsPage.routeName,
+          module: FeatureBookmarkModule(),
+        ),
+      ];
 }
 
 class MyApp extends StatelessWidget {
@@ -21,12 +57,8 @@ class MyApp extends StatelessWidget {
       title: 'News',
       theme: Themes.lightTheme,
       initialRoute: HomePage.routeName,
-      routes: {
-        HomePage.routeName: (context) => HomePage(),
-        DetailNewsPage.routeName: (context) => DetailNewsPage(
-              article: ModalRoute.of(context).settings.arguments,
-            ),
-      },
+      navigatorKey: Modular.navigatorKey,
+      onGenerateRoute: Modular.generateRoute,
     );
   }
 }

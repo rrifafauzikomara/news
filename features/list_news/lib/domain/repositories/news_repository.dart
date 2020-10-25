@@ -1,0 +1,5 @@
+import 'package:list_news/domain/entities/article_entity.dart';
+
+abstract class NewsRepository {
+  Future<List<ArticleEntity>> getListArticle();
+}
