@@ -15,21 +15,19 @@ class ListNewsPage extends StatelessWidget {
     return BlocBuilder<NewsBloc, NewsState>(
       builder: (context, state) {
         if (state is HasData) {
-          var articleNew = state.data[0];
-          var articleList = state.data;
-          articleList.removeAt(0);
+          var article = state.data;
           return NestedScrollView(
             headerSliverBuilder: (context, isScrolled) {
               return [
-                NewsHeader(article: articleNew),
+                NewsHeader(article: article[0]),
               ];
             },
             body: ListView.separated(
               separatorBuilder: (context, index) => Divider(height: 2.h),
               shrinkWrap: true,
-              itemCount: articleList.length,
+              itemCount: article.length,
               itemBuilder: (context, index) {
-                return CardArticle(article: articleList[index]);
+                return CardArticle(article: article[index]);
               },
             ),
           );
