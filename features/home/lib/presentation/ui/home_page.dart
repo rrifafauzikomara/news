@@ -35,10 +35,7 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil.init(context,
         designSize: Size(750, 1334), allowFontScaling: true);
     return Scaffold(
-      body: IndexedStack(
-        index: _bottomNavIndex,
-        children: _listWidget,
-      ),
+      body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomNavIndex,
         items: _bottomNavBarItems,
