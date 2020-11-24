@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_modular: ^2.0.1
   bloc: ^6.0.3
+  fluttertoast: ^7.1.4
 
   bookmark:
     path: features/bookmark

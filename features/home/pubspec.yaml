@@ -21,6 +21,9 @@ dependencies:
   bookmark:
     path: ../bookmark
 
+  core:
+    path: ../../libraries/core
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
