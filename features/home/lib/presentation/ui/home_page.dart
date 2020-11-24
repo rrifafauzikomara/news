@@ -1,7 +1,6 @@
 import 'package:bookmark/presentation/ui/favorite_news_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:list_news/presentation/ui/list_news_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +14,8 @@ class _HomePageState extends State<HomePage> {
   int _bottomNavIndex = 0;
 
   List<Widget> _listWidget = [
-    Modular.get<ListNewsPage>(),
-    Modular.get<FavoriteNewsPage>(),
+    ListNewsPage(),
+    FavoriteNewsPage(),
   ];
 
   List<BottomNavigationBarItem> _bottomNavBarItems = [
