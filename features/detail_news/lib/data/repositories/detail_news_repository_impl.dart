@@ -13,4 +13,8 @@ class DetailNewsRepositoryImpl extends DetailNewsRepository {
 
   @override
   Future saveNews(NewsTableData news) => dataSource.saveNews(news);
+
+  @override
+  Future<NewsTableData> getBookmarkedByUrl(String url) =>
+      dataSource.getBookmarkedByUrl(url);
 }

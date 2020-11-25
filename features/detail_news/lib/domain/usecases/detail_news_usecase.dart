@@ -6,6 +6,8 @@ abstract class DetailNewsUseCase {
   Future saveNews(NewsTableData news);
 
   Future deleteNews(NewsTableData news);
+
+  Future<NewsTableData> getBookmarkedByUrl(String url);
 }
 
 class DetailNewsUseCaseImpl extends DetailNewsUseCase {
@@ -18,4 +20,8 @@ class DetailNewsUseCaseImpl extends DetailNewsUseCase {
 
   @override
   Future saveNews(NewsTableData news) => newsRepository.saveNews(news);
+
+  @override
+  Future<NewsTableData> getBookmarkedByUrl(String url) =>
+      newsRepository.getBookmarkedByUrl(url);
 }

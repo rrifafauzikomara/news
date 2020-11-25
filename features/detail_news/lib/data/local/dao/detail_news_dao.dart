@@ -14,6 +14,6 @@ class DetailNewsDao extends DatabaseAccessor<AppDatabase>
 
   Future deleteNews(NewsTableData news) => delete(newsTable).delete(news);
 
-  //TODO: Get isBookmarked to handle isFavorite
-
+  Future<NewsTableData> getBookmarkedByUrl(String url) =>
+      (select(newsTable)..where((tbl) => tbl.url.equals(url))).getSingle();
 }

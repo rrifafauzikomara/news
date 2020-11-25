@@ -1,6 +1,6 @@
 import 'package:core/database/database_module.dart';
 import 'package:detail_news/domain/usecases/detail_news_usecase.dart';
-import 'package:detail_news/presentation/bloc/bloc.dart';
+import 'package:detail_news/presentation/bloc/detail_news/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

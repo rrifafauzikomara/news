@@ -5,6 +5,8 @@ abstract class DetailNewsDataSource {
   Future saveNews(NewsTableData news);
 
   Future deleteNews(NewsTableData news);
+
+  Future<NewsTableData> getBookmarkedByUrl(String url);
 }
 
 class DetailNewsLocal extends DetailNewsDataSource {
@@ -19,4 +21,8 @@ class DetailNewsLocal extends DetailNewsDataSource {
   @override
   Future saveNews(NewsTableData news) =>
       appDatabase.detailNewsDao.saveNews(news);
+
+  @override
+  Future<NewsTableData> getBookmarkedByUrl(String url) =>
+      appDatabase.detailNewsDao.getBookmarkedByUrl(url);
 }
