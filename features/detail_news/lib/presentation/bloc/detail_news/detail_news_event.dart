@@ -26,12 +26,3 @@ class DeleteNews extends DetailNewsEvent {
   @override
   List<Object> get props => [data];
 }
-
-class GetBookmarkedByUrl extends DetailNewsEvent {
-  final String url;
-
-  GetBookmarkedByUrl({@required this.url});
-
-  @override
-  List<Object> get props => [url];
-}

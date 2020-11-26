@@ -15,8 +15,6 @@ class DetailNewsBloc extends Bloc<DetailNewsEvent, DetailNewsState> {
       yield* _saveNews(event.data);
     } else if (event is DeleteNews) {
       yield* _deleteNews(event.data);
-    } else if (event is GetBookmarkedByUrl) {
-      yield* _getBookmarkedByUrl(event.url);
     }
   }
 
@@ -35,14 +33,6 @@ class DetailNewsBloc extends Bloc<DetailNewsEvent, DetailNewsState> {
       yield Success(message: "Delete Bookmark");
     } catch (e) {
       yield Error(message: e.toString());
-    }
-  }
-
-  Stream<DetailNewsState> _getBookmarkedByUrl(String url) async* {
-    try {
-
-    } catch (e) {
-
     }
   }
 }
