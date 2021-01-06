@@ -53,6 +53,7 @@ class NewsHeader extends StatelessWidget {
                       Align(
                         alignment: Alignment.topRight,
                         child: Card(
+                          color: Colors.pinkAccent,
                           margin: EdgeInsets.all(0),
                           shape: BeveledRectangleBorder(
                             borderRadius: BorderRadius.only(
@@ -63,7 +64,11 @@ class NewsHeader extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             child: Text(
                               "New",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.15,
+                                  color: Colors.white),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -80,6 +85,7 @@ class NewsHeader extends StatelessWidget {
                   article.title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ),
