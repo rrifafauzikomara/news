@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:detail_news/presentation/ui/detail_news_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:list_news/domain/entities/article_entity.dart';
 
 class CardArticle extends StatelessWidget {
@@ -15,7 +16,7 @@ class CardArticle extends StatelessWidget {
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        leading: article.urlToImage == null
+        trailing: article.urlToImage == null
             ? Container(
                 width: 200.w,
                 child: Center(child: Icon(Icons.error)),
@@ -25,8 +26,17 @@ class CardArticle extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: article.urlToImage,
                   width: 200.w,
-                  placeholder: (context, url) =>
-                      Center(child: CircularProgressIndicator()),
+                  placeholder: (context, url) => Center(
+                    child: SpinKitFadingCircle(
+                      itemBuilder: (BuildContext context, int index) {
+                        return DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: index.isEven ? Colors.red : Colors.green,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                   errorWidget: (context, url, error) =>
                       Center(child: Icon(Icons.error)),
                 ),

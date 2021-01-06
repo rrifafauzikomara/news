@@ -18,6 +18,7 @@ dependencies:
   bloc: ^6.0.3
   flutter_bloc: ^6.0.6
   dio: ^3.0.10
+  flutter_spinkit: ^4.1.2+1
 
   detail_news:
     path: ../detail_news
