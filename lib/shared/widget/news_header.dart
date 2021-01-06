@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:news/features/detail/presentation/ui/detail_news_page.dart';
 import 'package:news/features/news/domain/entities/article_entity.dart';
 
@@ -37,7 +38,19 @@ class NewsHeader extends StatelessWidget {
                           imageUrl: article.urlToImage,
                           fit: BoxFit.contain,
                           placeholder: (context, url) => Container(
-                            child: Center(child: CircularProgressIndicator()),
+                            child: Center(
+                              child: SpinKitFadingCircle(
+                                itemBuilder: (BuildContext context, int index) {
+                                  return DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: index.isEven
+                                          ? Colors.red
+                                          : Colors.green,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                             height: 298.h,
                             width: width,
                           ),

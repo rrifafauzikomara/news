@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:news/features/news/domain/entities/article_entity.dart';
 
 class DetailNewsPage extends StatelessWidget {
@@ -35,7 +36,17 @@ class DetailNewsPage extends StatelessWidget {
                     imageUrl: article.urlToImage,
                     placeholder: (context, url) => Container(
                       height: 200.h,
-                      child: CircularProgressIndicator(),
+                      child: Center(
+                        child: SpinKitFadingCircle(
+                          itemBuilder: (BuildContext context, int index) {
+                            return DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: index.isEven ? Colors.red : Colors.green,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
                     errorWidget: (context, url, error) => Container(
                       height: 200.h,

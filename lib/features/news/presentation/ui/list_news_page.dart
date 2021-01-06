@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:news/features/news/data/remote/network/news_api.dart';
 import 'package:news/features/news/data/repositories/news_repository_impl.dart';
 import 'package:news/features/news/domain/usecases/news_usecase.dart';
@@ -34,7 +35,17 @@ class ListNewsPage extends StatelessWidget {
             ),
           );
         } else if (state is Loading) {
-          return Center(child: CircularProgressIndicator());
+          return Center(
+            child: SpinKitWave(
+              itemBuilder: (BuildContext context, int index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: index.isEven ? Colors.red : Colors.green,
+                  ),
+                );
+              },
+            ),
+          );
         } else if (state is Error) {
           return Center(child: Text(state.message));
         } else if (state is NoData) {
