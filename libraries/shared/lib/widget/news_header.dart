@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:detail_news/presentation/ui/detail_news_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:list_news/domain/entities/article_entity.dart';
 
 class NewsHeader extends StatelessWidget {
@@ -37,7 +38,19 @@ class NewsHeader extends StatelessWidget {
                           imageUrl: article.urlToImage,
                           fit: BoxFit.contain,
                           placeholder: (context, url) => Container(
-                            child: Center(child: CircularProgressIndicator()),
+                            child: Center(
+                              child: SpinKitFadingCircle(
+                                itemBuilder: (BuildContext context, int index) {
+                                  return DecoratedBox(
+                                    decoration: BoxDecoration(
+                                      color: index.isEven
+                                          ? Colors.red
+                                          : Colors.green,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                             height: 298.h,
                             width: width,
                           ),
@@ -53,6 +66,7 @@ class NewsHeader extends StatelessWidget {
                       Align(
                         alignment: Alignment.topRight,
                         child: Card(
+                          color: Colors.pinkAccent,
                           margin: EdgeInsets.all(0),
                           shape: BeveledRectangleBorder(
                             borderRadius: BorderRadius.only(
@@ -63,7 +77,11 @@ class NewsHeader extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             child: Text(
                               "New",
-                              style: Theme.of(context).textTheme.headline6,
+                              style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.15,
+                                  color: Colors.white),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -80,6 +98,7 @@ class NewsHeader extends StatelessWidget {
                   article.title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
+                  style: TextStyle(fontSize: 16),
                 ),
               ),
             ),

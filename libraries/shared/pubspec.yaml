@@ -15,6 +15,7 @@ dependencies:
   flutter_modular: ^2.0.1
   cached_network_image: ^2.3.2+1
   flutter_screenutil: ^3.1.1
+  flutter_spinkit: ^4.1.2+1
 
   list_news:
     path: ../../features/list_news

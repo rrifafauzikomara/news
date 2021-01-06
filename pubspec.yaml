@@ -31,6 +31,7 @@ dependencies:
   flutter_modular: ^2.0.1
   bloc: ^6.0.3
   fluttertoast: ^7.1.4
+  flutter_spinkit: ^4.1.2+1
 
   bookmark:
     path: features/bookmark
